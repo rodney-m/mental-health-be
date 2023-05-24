@@ -28,13 +28,22 @@ app.use(`${api}/auth`, authRoutes);
 app.use(`${api}/questions`, questionsRoutes);
 
 // Database 
-mongoose.connect(process.env.CONNECTION_STRING).then(() => {
-    console.log('Database connection is ready...')
-}).catch((err) => {
-    console.log(err)
-})
+// mongoose.connect(process.env.CONNECTION_STRING).then(() => {
+//     console.log('Database connection is ready...')
+// }).catch((err) => {
+//     console.log(err)
+// })
 
 //Ser
-app.listen(PORT, () => {
-    console.log('Server running on port '+7000)
-})
+
+
+
+const start = async() => {
+    await mongoose.connect(`mongodb+srv://rodney:admin123@cluster0.3omivqf.mongodb.net/?retryWrites=true&w=majority`)
+    app.listen(PORT, () => {
+        console.log('Server running on port '+7000)
+    })
+
+}
+
+start()
